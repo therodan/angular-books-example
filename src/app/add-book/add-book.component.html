@@ -1,0 +1,36 @@
+<mat-card class="add-book-card">
+    <mat-card-header>
+        <mat-icon mat-card-avatar>assignment</mat-icon>
+        <mat-card-title><h5>Add Book</h5></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="bookForm" class="book-form">
+            <mat-form-field>
+                <input matInput placeholder="Title" formControlName="title" />
+                <mat-error *ngIf="bookForm.get('title').touched && bookForm.get('title').invalid">
+                    The maximum length of a title is 30 characters
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Category" formControlName="category">
+                    <mat-option *ngFor="let cat of categories" [value]="cat">
+                        {{ cat }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bookForm.get('category').touched && bookForm.get('category').invalid">
+                    Please select a category
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                <mat-error *ngIf="bookForm.get('description').touched && bookForm.get('description').invalid">
+                    Please enter a description
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="alert alert-success" *ngIf="message">{{ message }}</div>
+        <button mat-button (click)="saveBook()" [disabled]="bookForm.invalid">Add</button>
+    </mat-card-actions>
+</mat-card>

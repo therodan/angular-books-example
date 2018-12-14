@@ -1,0 +1,12 @@
+.add-book-card {
+    max-width: 400px;
+    margin: 20px auto;
+}
+.book-form {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        width: 100%;
+    }
+}
